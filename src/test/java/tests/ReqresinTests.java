@@ -39,7 +39,7 @@ public class ReqresinTests {
     }
 
     @Test
-    void createTest() {
+    void createUserTest() {
         String body = "{ \"name\": \"morpheus\"," +
                 " \"job\": \"leader\" }";
 
@@ -77,7 +77,7 @@ public class ReqresinTests {
     }
 
     @Test
-    void deleteTest() {
+    void deleteUserTest() {
         given()
                 .contentType(JSON)
                 .when()
