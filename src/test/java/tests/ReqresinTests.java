@@ -1,5 +1,7 @@
 package tests;
 
+import io.restassured.RestAssured;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -7,13 +9,17 @@ import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 
 public class ReqresinTests {
+    @BeforeAll
+    static void setUp() {
+        RestAssured.baseURI = "https://reqres.in/";
+    }
 
     @Test
     void check404StatusTest() {
         given()
                 .contentType(JSON)
                 .when()
-                .get("https://reqres.in/api/users/23")
+                .get("api/users/23")
                 .then()
                 .log().status()
                 .log().body()
@@ -25,7 +31,7 @@ public class ReqresinTests {
         given()
                 .contentType(JSON)
                 .when()
-                .get("https://reqres.in/api/users?page=2")
+                .get("api/users?page=2")
                 .then()
                 .log().status()
                 .log().body()
@@ -43,7 +49,7 @@ public class ReqresinTests {
                 .body(body)
                 .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/users")
+                .post("api/users")
                 .then()
                 .log().status()
                 .log().body()
@@ -62,7 +68,7 @@ public class ReqresinTests {
                 .body(body)
                 .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/login")
+                .post("api/login")
                 .then()
                 .log().status()
                 .log().body()
@@ -75,7 +81,7 @@ public class ReqresinTests {
         given()
                 .contentType(JSON)
                 .when()
-                .delete("https://reqres.in/api/users/2")
+                .delete("api/users/2")
                 .then()
                 .log().status()
                 .log().body()
